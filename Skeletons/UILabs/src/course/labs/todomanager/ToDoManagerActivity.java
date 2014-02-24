@@ -99,7 +99,7 @@ public class ToDoManagerActivity extends ListActivity {
 			}
 			
 			if(resultCode==RESULT_CANCELED){
-				Log.i(TAG, "Error retrieving ToDoItem from activity");
+				//Log.i(TAG, "Error retrieving ToDoItem from activity");
 			}
 		}
 
