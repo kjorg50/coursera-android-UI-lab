@@ -51,7 +51,10 @@ public class ToDoManagerActivity extends ListActivity {
 
 		//TODO - Inflate footerView for footer_view.xml file
 
-		TextView footerView = null;
+		// 1. get a layout inflater
+		// 2. call the inflate method, with the id of the footer view resource
+		// 3. cast it as a TextView
+		TextView footerView = (TextView) this.getLayoutInflater().inflate(R.layout.footer_view, null);
 
 		//TODO - Add footerView to ListView
 
