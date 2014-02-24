@@ -85,51 +85,70 @@ public class ToDoListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 
-		//TODO - Get the current ToDoItem
-		final ToDoItem toDoItem = null;
+		//DONE - Get the current ToDoItem
+		final ToDoItem toDoItem = (ToDoItem) getItem(position);
 
-		//TODO - Inflate the View for this ToDoItem
+		//DONE - Inflate the View for this ToDoItem
 		// from todo_item.xml.
-		RelativeLayout itemLayout = null;
+		// the result of the inflate it the layout object
+		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		RelativeLayout itemLayout = (RelativeLayout) inflater.inflate(R.layout.todo_item, null);
 		
-		//TODO - Fill in specific ToDoItem data
+		//DONE - Fill in specific ToDoItem data (this is multiple TODO's below)
 		// Remember that the data that goes in this View
 		// corresponds to the user interface elements defined 
 		// in the layout file 
 
-		//TODO - Display Title in TextView
-
-		final TextView titleView = null;
+		//DONE - Display Title in TextView
+		// requires getting the textView for the title, and then setting it with the appropriate text
+		//   for the toDoItem
 		
-		// TODO - Set up Status CheckBox
-	
-		final CheckBox statusView = null;
+		final TextView titleView = (TextView) itemLayout.findViewById(R.id.titleView);
+		titleView.setText(toDoItem.getTitle());
+		
+		// DONE - Set up Status CheckBox
+		// Again, requires getting the checkbox object from the layout, then setting the status
+		// equal to true/false depending on if the status is 'DONE'
+		final CheckBox statusView = (CheckBox) itemLayout.findViewById(R.id.statusCheckBox);
+		statusView.setChecked(toDoItem.getStatus() == Status.DONE);
 		
 		
 		statusView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
+				// isChecked represents the *new* state of the buttonView
 				log("Entered onCheckedChanged()");
 				
-				// TODO - Set up and implement an OnCheckedChangeListener, which 
+				// DONE - Set up and implement an OnCheckedChangeListener, which 
 				// is called when the user toggles the status checkbox
-
-
+				
+				if(isChecked){ // if the checkbox is now marked as DONE
+					
+					// change the status of the item itself
+					toDoItem.setStatus(Status.DONE);
+					
+					// and change the appearance of the checkbox
+					statusView.setChecked(true);
+				} else {
+					// do the opposite
+					toDoItem.setStatus(Status.NOTDONE);
+					statusView.setChecked(false);
+				}
 			
 			}
 		});
 
-		//TODO - Display Priority in a TextView
+		//DONE - Display Priority in a TextView
 
-		final TextView priorityView = null;
-
+		final TextView priorityView = (TextView) itemLayout.findViewById(R.id.priorityView);
+		priorityView.setText(toDoItem.getPriority().toString());
 		
-		// TODO - Display Time and Date. 
+		//DONE - Display Time and Date. 
 		// Hint - use ToDoItem.FORMAT.format(toDoItem.getDate()) to get date and time String
 
-		final TextView dateView = null;
-				
+		final TextView dateView = (TextView) itemLayout.findViewById(R.id.dateView);
+		dateView.setText( ToDoItem.FORMAT.format(toDoItem.getDate()) );		
 
 		// Return the View you just created
 		return itemLayout;
