@@ -30,6 +30,7 @@ public class ToDoItem {
 	public final static SimpleDateFormat FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss", Locale.US);
 
+	// default initializations
 	private String mTitle = new String();
 	private Priority mPriority = Priority.LOW;
 	private Status mStatus = Status.NOTDONE;
