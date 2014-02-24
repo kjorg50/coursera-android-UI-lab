@@ -65,7 +65,7 @@ public class ToDoManagerActivity extends ListActivity {
 
 				log("Entered footerView.OnClickListener.onClick()");
 
-				//TODO - Attach Listener to FooterView. Implement onClick().
+				//DONE - Implement onClick().
 				
 				// On a click, we want to start the next activity. 
 				// Since we are expecting a todo item in return, we use startActivityForResult
@@ -74,7 +74,7 @@ public class ToDoManagerActivity extends ListActivity {
 			}
 		});
 
-		//TODO - Attach the adapter to this ListActivity's ListView
+		//DONE - Attach the adapter to this ListActivity's ListView
 		getListView().setAdapter(mAdapter);
 	}
 
@@ -83,10 +83,25 @@ public class ToDoManagerActivity extends ListActivity {
 
 		log("Entered onActivityResult()");
 
-		// TODO - Check result code and request code.
+		//DONE - Check result code and request code.
 		// If user submitted a new ToDoItem
 		// Create a new ToDoItem from the data Intent
 		// and then add it to the adapter
+		
+		if(requestCode==ADD_TODO_ITEM_REQUEST){
+			
+			if(resultCode==RESULT_OK){
+				// create new ToDoItem with data
+				ToDoItem newItem = new ToDoItem(data);
+				
+				// add this item to the adapter
+				mAdapter.add(newItem);
+			}
+			
+			if(resultCode==RESULT_CANCELED){
+				Log.i(TAG, "Error retrieving ToDoItem from activity");
+			}
+		}
 
 	}
 
