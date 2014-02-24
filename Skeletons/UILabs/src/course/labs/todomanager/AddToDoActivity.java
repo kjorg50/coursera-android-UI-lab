@@ -92,7 +92,7 @@ public class AddToDoActivity extends Activity {
 			public void onClick(View v) {
 				log("Entered cancelButton.OnClickListener.onClick()");
 
-				//TODO - Implement onClick(). 
+				//DONE - Implement onClick(). 
 				
 				// since this is the cancel button, we send a "cancelled" result
 				Intent intent = new Intent();
@@ -109,7 +109,7 @@ public class AddToDoActivity extends Activity {
 			public void onClick(View v) {
 				log("Entered resetButton.OnClickListener.onClick()");
 
-				//TODO - Reset data fields to default values
+				//DONE - Reset data fields to default values
 				
 				mTitleText.setText("");
 				mDefaultStatusButton.setChecked(true);
